@@ -14,7 +14,7 @@ pip install Pillow matplotlib numpy
 
 - **fonts**: Directorio que contiene archivos de fuente utilizados para el texto en los captchas.
 
-- **CaptchaImageGenerator.py**: El script principal que define la clase `CaptchaImageGenerator`.
+- **captcha_image_generator.py**: El script principal que define la clase `CaptchaImageGenerator`.
 
 ### Uso
 
