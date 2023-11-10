@@ -1,9 +1,13 @@
+import numpy as np
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+import matplotlib.pyplot as plt
+
 class CaptchaImageGerator:
 
     def __init__(self, width=150, height=50, fonts=None):
         self.width = width
         self.height = height
-        self.fonts = fonts or DEFAULT_FONTS
+        self.fonts = fonts
         self.color = None
         self.background = None  
 
@@ -14,7 +18,6 @@ class CaptchaImageGerator:
 
         image = Image.new('RGB', (self.width, self.height), color=self.background)
 
-        image = self.add_lines(image)
         image = self.add_noise(image)
         image = self.add_text(image, text)
 
@@ -38,29 +41,6 @@ class CaptchaImageGerator:
             ImageDraw.Draw(image).point((x_1, y_1), fill=self.color)
 
         return image
-
-    def add_lines(self, image):
-
-        width, height = image.size
-
-        for i in range(3):
-            x1 = np.random.randint(1, int(width / 8))
-            x2 = np.random.randint(width - int(width / 8), width)
-            y1 = np.random.randint(int(height / 8), height - int(height / 8))
-            y2 = np.random.randint(y1, height - int(height / 8))
-
-            points = [x1, y1, x2, y2]
-            points_chord = np.true_divide(points, 2).tolist()
-
-            end = np.random.randint(0, width * 2)
-            start = np.random.randint(0, height * 2)
-
-            draw = ImageDraw.Draw(image)
-            draw.arc(points, start, end, fill=self.color, width=1)
-            draw.chord(points, start, end, outline=self.color,  width=1)
-
-        return image
-
 
 
     def add_text(self, image, text):
