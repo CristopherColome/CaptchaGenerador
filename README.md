@@ -19,20 +19,25 @@ pip install Pillow matplotlib numpy
 ### Uso
 
 ```python
+import glob
+import os
 import string
 import random
 import matplotlib.pyplot as plt
 
+FONTS_DIR = "/content/drive/MyDrive/fonts"
+DEFAULT_FONTS = glob.glob(os.path.join(FONTS_DIR, "*.*"))
+
 CHARACTERS = string.digits + string.ascii_lowercase
 
-generator = CaptchaImageGerator()
+generator = CaptchaImageGerator(fonts = DEFAULT_FONTS)
 
 fig = plt.figure(figsize=(15, 5))
 columns = 2
-rows = 3
+rows = 2
 
 for i in range(1, columns * rows + 1):
-    captcha_text = "".join(random.choice(CHARACTERS) for _ in range(8))
+    captcha_text = "".join(random.choice(CHARACTERS) for _ in range(5))
     captcha_image = generator.generate(captcha_text)
     fig.add_subplot(rows, columns, i)
     plt.imshow(captcha_image)
