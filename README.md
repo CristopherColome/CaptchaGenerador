@@ -69,6 +69,4 @@ Genera una imagen captcha con el texto proporcionado. Retorna la imagen en forma
 
 - Este generador de captchas utiliza la biblioteca [Pillow](https://pillow.readthedocs.io/) para el procesamiento de imágenes.
 
----
 
-Espero que esta documentación te sea útil. ¡Diviértete generando captchas!
